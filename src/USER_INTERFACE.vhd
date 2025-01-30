@@ -31,7 +31,7 @@ architecture Behavioral of USER_INTERFACE is
     signal AUDIO_SAMPLE : std_logic_vector(9 downto 0);
     signal AUDIO_OUT    : std_logic_vector(9 downto 0);
     signal ENV_OUT    : std_logic_vector(9 downto 0);
-    signal FREQ        : std_logic_vector(7 downto 0);
+    signal FREQ        : std_logic_vector(13 downto 0);
     signal ATTACK : std_logic_vector(7 downto 0);
     signal DECAY : std_logic_vector(7 downto 0);
     signal WAVE : std_logic_vector(1 downto 0);
@@ -57,7 +57,7 @@ architecture Behavioral of USER_INTERFACE is
         Port (
             CLK          : in  STD_LOGIC;
             RESET        : in  STD_LOGIC;
-            FREQ_CTRL    : in  STD_LOGIC_VECTOR(7 downto 0);
+            FREQ_CTRL    : in  STD_LOGIC_VECTOR(13 downto 0);
             SEL          : in  STD_LOGIC_VECTOR(1 downto 0);
             AUDIO_SAMPLE : out STD_LOGIC_VECTOR(9 downto 0)
         );
@@ -103,6 +103,8 @@ architecture Behavioral of USER_INTERFACE is
             H2          : out STD_LOGIC_VECTOR(6 downto 0)
         );
     end component;
+
+
 
 
     begin
@@ -222,7 +224,7 @@ architecture Behavioral of USER_INTERFACE is
         begin
             if RST = '1' then
                 CS <= SET_WAVE;
-                FREQ <= "00000010";
+                FREQ <= "00000000010000";
                 ATTACK <= "10000000";
                 DECAY <= "10000000";
                 WAVE <= (others => '0');
@@ -248,9 +250,9 @@ architecture Behavioral of USER_INTERFACE is
                         HEX5 <= "0111000"; -- Lettera "F"
                         HEX4 <= "1111000"; -- Lettera "R"
                         HEX3 <= "0110000"; -- Lettera "E"
-                        DATA <= FREQ;
+                        DATA <= FREQ(7 downto 0);
                         if SW(8) = '1' then
-                            FREQ <= SW(7 downto 0);
+                            FREQ <= "000000" & SW(7 downto 0);
                         end if;
                         if MENU_VALUE = '1' then
                             CS <= SET_ATTACK;

@@ -53,14 +53,18 @@ The synthesizer is currently functional with:
 - PWM audio output
 - Basic user interface with parameter control
 - LED display feedback
+- Fixed frequency range (0-16KHz with 14-bit control)
 
 ## 🌟 Future Improvements
 
 1. **Sound Features:**
-    - Fix the frequency range
-    - Add more waveforms (sine, noise)
+    - Fix the frequency range ✓
+    - Fix triangle wave implementation 
+    - Add more oscillators  
+    - Add LUT-based oscillators
     - Add filters (low-pass, high-pass)
     - Include modulation effects (LFO)
+
 
 2. **Interface Enhancements:**
     - Add MIDI input support
@@ -68,6 +72,7 @@ The synthesizer is currently functional with:
     - Add visual feedback for envelope shape
 
 3. **Technical Improvements:**
+    - Improve envelope timings with millisecond-based values
     - Add anti-aliasing for waveforms
     - Implement higher resolution frequency control
     - Add stereo output capability
